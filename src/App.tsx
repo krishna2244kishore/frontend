@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import './App.css';
 import Profile from './Profile';
 
-const API_BASE = 'http://localhost:8000/api';
+const API_BASE = 'https://web-production-e044e.up.railway.app/api';
 
 function SignIn({ onSignUp, onForgot, onSuccess }: { onSignUp: () => void; onForgot: () => void; onSuccess: (token: string, profile: {username: string, email: string}) => void }) {
   const [username, setUsername] = useState('');
@@ -673,7 +673,7 @@ function AdminPage({ onLogin, isLoggedIn, onLogout, tab, setTab }: { onLogin: (u
     e.preventDefault();
     setError('');
     try {
-      const res = await fetch('http://localhost:8000/api/token/', {
+      const res = await fetch('https://web-production-e044e.up.railway.app/api/token/', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ username, password })
@@ -1368,7 +1368,7 @@ function TeamHeadDashboard({ tickets, selectedMenu, setSelectedMenu, token, user
     if (sidebarMenu === 'userloghistory') {
       setLogLoading(true);
       setLogError('');
-      fetch('http://localhost:8000/api/userloghistory/', {
+      fetch(`https://web-production-e044e.up.railway.app/api/userloghistory/`, {
         headers: { 'Authorization': token ? `Bearer ${token}` : '' }
       })
         .then(res => res.ok ? res.json() : Promise.reject(res))
